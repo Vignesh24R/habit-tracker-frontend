@@ -1,0 +1,26 @@
+<div class="auth-container">
+  <h1>Register</h1>
+
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" [(ngModel)]="email" required email />
+
+    <label for="password">Password (min 8 characters)</label>
+    <input
+      id="password"
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+      minlength="8"
+    />
+
+    <button type="submit" [disabled]="registerForm.invalid || isLoading">
+      {{ isLoading ? 'Creating account...' : 'Register' }}
+    </button>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+
+  <p>Already have an account? <a routerLink="/login">Log In</a></p>
+</div>

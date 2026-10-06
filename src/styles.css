@@ -1,1 +1,315 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f6f8;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ---------- Auth pages (login/register) ---------- */
+
+.auth-container {
+  max-width: 380px;
+  margin: 80px auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.auth-container h1 {
+  margin: 0 0 24px;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.auth-container label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 16px 0 6px;
+  color: #444;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.15s;
+}
+
+.auth-container input:focus {
+  outline: none;
+  border-color: #4f7cff;
+}
+
+.auth-container button[type='submit'] {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  background: #4f7cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.auth-container button[type='submit']:hover:not(:disabled) {
+  background: #3d63d6;
+}
+
+.auth-container button[type='submit']:disabled {
+  background: #b8c4e8;
+  cursor: not-allowed;
+}
+
+.auth-container p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 20px;
+}
+
+.auth-container a {
+  color: #4f7cff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: #d93025;
+  background: #fce8e6;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* ---------- Habit list page ---------- */
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+.page header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.page header button {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.page header button:hover {
+  background: #f0f0f0;
+}
+
+/* "+ New Habit" toggle button */
+.btn-new-habit {
+  background: #4f7cff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.btn-new-habit:hover {
+  background: #3d63d6;
+}
+
+.create-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.create-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.create-form button {
+  padding: 10px 18px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.habit-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 12px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.habit-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.habit-info h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.habit-info p {
+  margin: 0;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.habit-info .streak {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.habit-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.habit-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.habit-actions button:first-child {
+  background: #22c55e;
+  color: #fff;
+}
+
+.habit-actions button:first-child:hover {
+  background: #16a34a;
+}
+
+.habit-actions .secondary {
+  background: #f0f0f0;
+  color: #555;
+}
+
+.habit-actions .secondary:hover {
+  background: #e0e0e0;
+}
+
+.reminder-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.85rem;
+}
+
+.reminder-status {
+  color: #444;
+  font-weight: 500;
+}
+
+.reminder-status.muted {
+  color: #999;
+  font-weight: 400;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #4f7cff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+.reminder-editor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.reminder-editor input[type='time'] {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.reminder-editor button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #4f7cff;
+  color: #fff;
+}
+
+.reminder-editor button.secondary {
+  background: #f0f0f0;
+  color: #555;
+}
+
+.page p.empty-state {
+  text-align: center;
+  color: #999;
+  margin-top: 40px;
+}

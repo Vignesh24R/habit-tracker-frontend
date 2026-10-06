@@ -1,0 +1,73 @@
+<div class="page">
+  <header>
+    <h1>Your Habits</h1>
+    <button (click)="logout()">Log Out</button>
+  </header>
+
+  <p class="error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+
+  <div *ngIf="isLoading()">Loading...</div>
+
+  <div *ngIf="!isLoading()">
+    <button class="btn-new-habit" (click)="toggleCreateForm()">
+      {{ showCreateForm() ? 'Cancel' : '+ New Habit' }}
+    </button>
+
+    <form *ngIf="showCreateForm()" (ngSubmit)="createHabit()" class="create-form">
+      <input
+        type="text"
+        name="newHabitName"
+        [ngModel]="newHabitName()"
+        (ngModelChange)="newHabitName.set($event)"
+        placeholder="Habit name (e.g. Drink water)"
+        required
+      />
+      <button type="submit">Create</button>
+    </form>
+
+    <div class="habit-card" *ngFor="let habit of habits()">
+      <div class="habit-card-main">
+        <div class="habit-info">
+          <h3>{{ habit.name }}</h3>
+          <p *ngIf="habit.description">{{ habit.description }}</p>
+          <p class="streak" *ngIf="habit.streak">
+            🔥 Current: {{ habit.streak.currentStreak }} &nbsp; | &nbsp; 🏆 Best:
+            {{ habit.streak.longestStreak }}
+          </p>
+        </div>
+        <div class="habit-actions">
+          <button (click)="markComplete(habit)">✓ Complete</button>
+          <button (click)="archiveHabit(habit)" class="secondary">Archive</button>
+        </div>
+      </div>
+
+      <!-- Reminder row: shows current state, or the inline editor when open -->
+      <div class="reminder-row" *ngIf="editingReminderHabitId() !== habit.id">
+        <span class="reminder-status" *ngIf="habit.reminderEnabled">
+          ⏰ Reminder at {{ habit.reminderTime?.substring(0, 5) }}
+        </span>
+        <span class="reminder-status muted" *ngIf="!habit.reminderEnabled"> No reminder set </span>
+        <button class="link-button" (click)="openReminderEditor(habit)">
+          {{ habit.reminderEnabled ? 'Change' : 'Set reminder' }}
+        </button>
+        <button class="link-button" *ngIf="habit.reminderEnabled" (click)="disableReminder(habit)">
+          Turn off
+        </button>
+      </div>
+
+      <div class="reminder-editor" *ngIf="editingReminderHabitId() === habit.id">
+        <input
+          type="time"
+          [ngModel]="reminderTimeInput()"
+          (ngModelChange)="reminderTimeInput.set($event)"
+        />
+        <button (click)="saveReminder(habit)">Save</button>
+        <button class="secondary" (click)="closeReminderEditor()">Cancel</button>
+      </div>
+    </div>
+
+    <p class="empty-state" *ngIf="habits().length === 0">
+      No habits yet — create your first one above.
+    </p>
+  </div>
+</div>
